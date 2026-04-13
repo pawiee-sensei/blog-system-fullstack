@@ -8,7 +8,7 @@ export const registerUser = async (username, email, password) => {
         throw new Error("Username, email, and password are required");  
 
     }
-
+    // 2. Check if user already exists
     const [existing] = await pool.query("SELECT id FROM users WHERE email = ?", [email]);   
 
     if (existing.length > 0) {

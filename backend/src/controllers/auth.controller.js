@@ -1,5 +1,6 @@
 import { registerUser } from "../services/auth.service.js";
 
+// export the function so other files can import it
 export const register = async (req, res) => {
     try {
         const user = await registerUser(req.body);

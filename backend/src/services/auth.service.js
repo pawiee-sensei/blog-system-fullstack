@@ -1,7 +1,7 @@
 import pool from "../config/db.js";
 import bcrypt from "bcrypt";    
 
-export const registerUser = async (username, email, password) => {
+export const registerUser = async ({ username, email, password }) => {
 
     // 1. Validate input
     if (!username || !email || !password) {

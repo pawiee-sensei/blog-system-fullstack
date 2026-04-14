@@ -3,8 +3,14 @@ import Input from "../../../components/input/input";
 import Button from "../../../components/button/Button";
 import Alert from "../../../components/Alert/Alert";
 import { loginUser } from "../../../services/authService";
+import { useAuth } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  // Hooks need to live inside the component body.
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -29,9 +35,8 @@ const LoginForm = () => {
     try {
       const res = await loginUser(form);
 
-      setSuccess(res.data.message);
-
-      console.log("USER:", res.data.user);
+      login(res.data.user);
+      navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }

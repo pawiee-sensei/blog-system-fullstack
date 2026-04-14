@@ -7,3 +7,14 @@ const API = axios.create({
 export const registerUser = (data) => API.post("/register", data);
 
 export const loginUser = (data) => API.post("/login", data);
+
+API.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+
+  }
+
+  return config;
+});

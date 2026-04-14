@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/Header/Header";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 // Added for the dashboard route so the app can render without crashing.
@@ -16,7 +17,14 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </AuthProvider>

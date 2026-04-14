@@ -6,19 +6,22 @@ import { loginUser } from "../../../services/authService";
 import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
-  // Hooks need to live inside the component body.
+  // A form component for user login
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+  // A form component for user login
+  const LoginForm = () => {
+    const [form, setForm] = useState({
+      email: "",
+      password: "",
+    });
 
+  // State to hold success and error messages
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
+  // Handle input changes and form submission
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -26,17 +29,23 @@ const LoginForm = () => {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError("");
     setSuccess("");
 
+    // Attempt to log in the user using the loginUser function, which sends a request to the server with the form data. If the login is successful, it will receive user data in the response.
     try {
       const res = await loginUser(form);
 
-      login(res.data.user);
+      // Log in the user using the login function from AuthContext, passing the user data received from the server. This will update the authentication state and store the user data in localStorage.
+      login(res.data);
+      // After successful login, navigate the user to the dashboard page. This allows the user to access protected routes that require authentication.
       navigate("/dashboard");
+
+      // Optionally, you can set a success message or perform other actions here
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }

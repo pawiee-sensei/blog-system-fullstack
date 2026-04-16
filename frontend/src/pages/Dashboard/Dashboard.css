@@ -1,0 +1,34 @@
+.dashboard {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dashboard-posts {
+  margin-top: 24px;
+}
+
+.dashboard-post-list {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.dashboard-post-item {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.dashboard-empty {
+  color: #666;
+}

@@ -14,14 +14,13 @@ export const register = async (req, res) => {
         });
     } catch (error) {
         console.error(error);
-
+      // 4. Send an error JSON response with status code 400 if registration fails
         res.status(400).json({
             message: error.message || "Registration failed",
         });
     }  
     
 };  
-
 export const login = async (req, res) => {
   try {
     const user = await loginUser(req.body);

@@ -1,10 +1,12 @@
 import pool from "../config/db.js";
 import bcrypt from "bcrypt";    
+import jwt from "jsonwebtoken";
 
 export const registerUser = async ({ username, email, password }) => {
 
-    // 1. Validate input
+    // 1. Validate input. Check if all required fields are provided
     if (!username || !email || !password) {
+      // If any field is missing, throw an error with a message indicating that all fields are required
         throw new Error("Username, email, and password are required");  
 
     }
@@ -59,8 +61,14 @@ export const loginUser = async ({ email, password }) => {
     throw new Error("Invalid credentials");
   }
 
-  // 4. Return safe data
+  // 4. Generate JWT token with user ID as payload, using secret and expiration from environment variables
+  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+
+  // 4. Return safe data to the client, including the token and user information (excluding password)
   return {
+    token,
     id: user.id,
     username: user.username,
     email: user.email,

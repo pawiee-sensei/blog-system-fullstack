@@ -12,7 +12,7 @@ const Header = () => {
       <nav>
         {user ? (
           <>
-            <span>Welcome, {user.username}!</span>
+            <span>{user.username}</span>
             <Link to="/dashboard">Dashboard</Link>
             <button onClick={logout}>Logout</button>
           </>

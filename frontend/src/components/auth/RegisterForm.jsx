@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Input from "../../../components/input/input";
-import Button from "../../../components/button/Button";
-import Alert from "../../../components/Alert/Alert";
-import { registerUser } from "../../../services/authService";
+import Alert from "../Alert/Alert";
+import Button from "../button/Button";
+import Input from "../input/input";
+import { registerUser } from "../../services/authService";
 
 const RegisterForm = () => {
   const [form, setForm] = useState({
@@ -10,7 +10,6 @@ const RegisterForm = () => {
     email: "",
     password: "",
   });
-
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
@@ -23,15 +22,12 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setError("");
     setSuccess("");
 
     try {
       const res = await registerUser(form);
-
       setSuccess(res.data.message);
-
       setForm({
         username: "",
         email: "",

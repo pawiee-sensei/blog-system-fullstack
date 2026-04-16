@@ -1,12 +1,11 @@
-import "./Register.css";
-import RegisterForm from "./components/RegisterForm";
+import AuthPageLayout from "../../components/auth/AuthPageLayout";
+import RegisterForm from "../../components/auth/RegisterForm";
 
 const Register = () => {
   return (
-    <div className="register-container">
-      <h2>Register</h2>
-      <RegisterForm/>
-    </div>
+    <AuthPageLayout title="Register">
+      <RegisterForm />
+    </AuthPageLayout>
   );
 };
 

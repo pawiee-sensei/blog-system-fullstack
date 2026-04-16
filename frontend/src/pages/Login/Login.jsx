@@ -1,12 +1,11 @@
-import "./Login.css";
-import LoginForm from "./components/LoginForm";
+import AuthPageLayout from "../../components/auth/AuthPageLayout";
+import LoginForm from "../../components/auth/LoginForm";
 
 const Login = () => {
   return (
-    <div className="login-container">
-      <h2>Login</h2>
+    <AuthPageLayout title="Login">
       <LoginForm />
-    </div>
+    </AuthPageLayout>
   );
 };
 
